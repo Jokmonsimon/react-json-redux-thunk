@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,6 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import { useDispatch, useSelector } from "react-redux";
+import { loadUsers } from "../redux/action";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -20,39 +24,56 @@ const rows = [
 ];
 
 const Home = () => {
+  let dispatch = useDispatch();
+  const { users } = useSelector((state) => state.usersData);
+
+  useEffect(() => {
+    dispatch(loadUsers());
+  }, []);
   return (
     <div>
       <TableContainer component={Paper}>
         <Table
-          sx={{ minWidth: 900, marginTop: 20, backgroundColor: "gray" }}
+          sx={{ minWidth: 900, marginTop: 20 }}
           size="small"
           aria-label="a dense table"
         >
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
-              <TableCell align="center">Email</TableCell>
+              <TableCell align="left">Email</TableCell>
+              <TableCell align="left">Address</TableCell>
               <TableCell align="center">Contact</TableCell>
-              <TableCell align="center">Address</TableCell>
               <TableCell align="center">Action</TableCell>
             </TableRow>
           </TableHead>
-          {/* <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody> */}
+          <TableBody>
+            {users &&
+              users.map((user) => (
+                <TableRow
+                  key={user.id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {user.name}
+                  </TableCell>
+                  <TableCell align="left">{user.email}</TableCell>
+                  <TableCell align="left">{user.address}</TableCell>
+                  <TableCell align="center">{user.contact}</TableCell>
+                  <TableCell align="center">
+                    <ButtonGroup
+                      variant="contained"
+                      aria-label="outlined primary button group"
+                    >
+                      <Button style={{ marginRight: 5 }} color="secondary">
+                        Delete
+                      </Button>
+                      <Button>Edit</Button>
+                    </ButtonGroup>
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
         </Table>
       </TableContainer>
     </div>
