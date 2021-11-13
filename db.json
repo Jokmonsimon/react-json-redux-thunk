@@ -1,0 +1,32 @@
+{
+    "user": [
+        {
+          "name": "Ojok Simon Peter",
+          "address": "Omoro",
+          "email": "jokcode@gmail.com",
+          "contact": "0776020431",
+          "id": 1  
+        },
+        {
+            "name": "Eyena Samuel Baker",
+            "address": "Gulu",
+            "email": "yeni@gmail.com",
+            "contact": "0760488446",
+            "id": 2  
+        },
+        {
+            "name": "Aber Irene",
+            "address": "Oyam",
+            "email": "aber@gmail.com",
+            "contact": "0789454738",
+            "id": 3  
+        },
+        {
+            "name": "Akello Nancy",
+            "address": "Kampala",
+            "email": "akello@gmail.com",
+            "contact": "0788367348",
+            "id": 4  
+        }
+    ]
+}
