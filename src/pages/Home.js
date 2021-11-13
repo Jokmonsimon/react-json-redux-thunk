@@ -43,7 +43,7 @@ const Home = () => {
     <div className="home">
       <div className="home-row">
         <div className="add-user-button">
-          <Button variant="contained" onClick={() => navigate.push("/addUser")}>
+          <Button variant="contained" onClick={() => navigate("/addUser")}>
             Add User
           </Button>
         </div>
