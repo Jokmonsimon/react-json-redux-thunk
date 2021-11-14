@@ -4,10 +4,14 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/action";
+import { red } from "@mui/material/colors";
 
 const AddUser = () => {
   const [error, setError] = useState("");
   let navigate = useNavigate();
+  let dispatch = useDispatch();
 
   const [state, setState] = useState({
     name: "",
@@ -20,20 +24,33 @@ const AddUser = () => {
 
   const handleInputChange = (e) => {
     let { name, value } = e.target;
-    console.log(e.target.value);
     setState({ ...state, [name]: value });
   };
 
   const handleSubmit = (e) => {
-    e.preventdefault();
+    e.preventDefault();
     if (!name || !email || !address || !contact) {
       setError("Please enter value in all Fields");
+    } else {
+      dispatch(addUser(state));
+      navigate("/");
+      setError("");
     }
   };
   return (
     <div className="container">
       <div className="container-row">
+        <div className="go-back-button">
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={() => navigate("/")}
+          >
+            Go Back
+          </Button>
+        </div>
         <h3>Add New User</h3>
+        {error && <h3 style={{ color: "red" }}>{error}</h3>}
         <Box
           className="form-input"
           component="form"
@@ -48,7 +65,8 @@ const AddUser = () => {
             id="standard-basic"
             label="Name"
             variant="standard"
-            defaultValue={name}
+            Value={name}
+            name="name"
             type="text"
             onChange={handleInputChange}
           />
@@ -56,7 +74,8 @@ const AddUser = () => {
             id="standard-basic"
             label="Email"
             variant="standard"
-            defaultValue={email}
+            Value={email}
+            name="email"
             type="email"
             onChange={handleInputChange}
           />
@@ -64,7 +83,8 @@ const AddUser = () => {
             id="standard-basic"
             label="Address"
             variant="standard"
-            defaultValue={address}
+            Value={address}
+            name="address"
             type="text"
             onChange={handleInputChange}
           />
@@ -72,19 +92,12 @@ const AddUser = () => {
             id="standard-basic"
             label="Contact"
             variant="standard"
-            defaultValue={contact}
+            Value={contact}
+            name="contact"
             type="number"
             onChange={handleInputChange}
           />
           <div className="submit-button">
-            <Button
-              className="cancel-button"
-              color="secondary"
-              variant="contained"
-              onClick={() => navigate("/")}
-            >
-              Cancel
-            </Button>
             <Button variant="contained" type="sumit">
               Submit
             </Button>

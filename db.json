@@ -5,28 +5,49 @@
       "address": "Omoro",
       "email": "jokcode@gmail.com",
       "contact": "0776020431",
-      "id": 1  
+      "id": 1
     },
     {
-        "name": "Eyena Samuel Baker",
-        "address": "Gulu",
-        "email": "yeni@gmail.com",
-        "contact": "0760488446",
-        "id": 2  
+      "name": "Eyena Samuel Baker",
+      "address": "Gulu",
+      "email": "yeni@gmail.com",
+      "contact": "0760488446",
+      "id": 2
     },
     {
-        "name": "Aber Irene",
-        "address": "Oyam",
-        "email": "aber@gmail.com",
-        "contact": "0789454738",
-        "id": 3  
+      "name": "Aber Irene",
+      "address": "Oyam",
+      "email": "aber@gmail.com",
+      "contact": "0789454738",
+      "id": 3
     },
     {
-        "name": "Akello Nancy",
-        "address": "Kampala",
-        "email": "akello@gmail.com",
-        "contact": "0788367348",
-        "id": 4  
+      "name": "Akello Nancy",
+      "address": "Kampala",
+      "email": "akello@gmail.com",
+      "contact": "0788367348",
+      "id": 4
+    },
+    {
+      "name": "Ojok Simon Peter",
+      "email": "simonpeter.oj@gmail.com",
+      "address": "For God",
+      "contact": "0789765",
+      "id": 5
+    },
+    {
+      "name": "Rwotomiya Nathan",
+      "email": "nathan@gmail.com",
+      "address": "Gulu",
+      "contact": "0786564545",
+      "id": 6
+    },
+    {
+      "name": "Jokmon Simon Peter",
+      "email": "jokmon@gmail.com",
+      "address": "Bobi",
+      "contact": "07864534",
+      "id": 7
     }
   ]
 }
