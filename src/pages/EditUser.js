@@ -1,25 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddUser.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addUser } from "../redux/action";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, getSingleUser } from "../redux/action";
 
-const AddUser = () => {
-  const [error, setError] = useState("");
-  let navigate = useNavigate();
-  let dispatch = useDispatch();
-
+const EditUser = () => {
   const [state, setState] = useState({
     name: "",
     email: "",
     address: "",
     contact: "",
   });
+  const [error, setError] = useState("");
+
+  let { id } = useParams();
+  const { user } = useSelector((state) => state.data || {});
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
 
   const { name, email, address, contact } = state;
+
+  useEffect(() => {
+    dispatch(getSingleUser(id));
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setState({ ...user });
+    }
+  }, [user]);
 
   const handleInputChange = (e) => {
     let { name, value } = e.target;
@@ -48,7 +60,7 @@ const AddUser = () => {
             Go Back
           </Button>
         </div>
-        <h3>Add New User</h3>
+        <h3>Update User Information</h3>
         {error && <h3 style={{ color: "red" }}>{error}</h3>}
         <Box
           className="form-input"
@@ -64,7 +76,7 @@ const AddUser = () => {
             id="standard-basic"
             label="Name"
             variant="standard"
-            Value={name}
+            Value={name || ""}
             name="name"
             type="text"
             onChange={handleInputChange}
@@ -73,7 +85,7 @@ const AddUser = () => {
             id="standard-basic"
             label="Email"
             variant="standard"
-            Value={email}
+            Value={email || ""}
             name="email"
             type="email"
             onChange={handleInputChange}
@@ -82,7 +94,7 @@ const AddUser = () => {
             id="standard-basic"
             label="Address"
             variant="standard"
-            Value={address}
+            Value={address || ""}
             name="address"
             type="text"
             onChange={handleInputChange}
@@ -91,14 +103,14 @@ const AddUser = () => {
             id="standard-basic"
             label="Contact"
             variant="standard"
-            Value={contact}
+            Value={contact || ""}
             name="contact"
             type="number"
             onChange={handleInputChange}
           />
           <div className="submit-button">
             <Button variant="contained" type="sumit">
-              Submit
+              Update
             </Button>
           </div>
         </Box>
@@ -107,4 +119,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default EditUser;
